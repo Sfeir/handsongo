@@ -19,7 +19,7 @@ Data are persisted in a MongoDB NoSQL database and the application is deployed i
 * [Sirupsen the logger](https://github.com/Sirupsen/logrus)
 * [The database driver](https://gopkg.in/mgo.v2)
 * [Godep the dependency manager](https://github.com/tools/godep)
-* [Golint the source linter](https://github.com/golang/lint/golint)
+* [Golint the source linter](https://github.com/golang/lint)
 
 ## Architecture
 
