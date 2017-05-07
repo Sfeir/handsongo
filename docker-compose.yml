@@ -7,7 +7,7 @@ handsongo:
    - mongo
  ports:
   - "8020:8020"
- command: /go/bin/handsongo -port 8020 -logl debug -logf text -statd 15s -db mongodb://mongo/spirits
+ command: /app/handsongo -port 8020 -logl debug -logf text -statd 15s -db mongodb://mongo/spirits
 
 # bdd mockup
 mongo:

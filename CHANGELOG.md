@@ -1,4 +1,7 @@
 # Changelog
+
+## v0.0.5 [unreleased]
+-17/05/07 chore(docker): add support for multi stage docker build to reduce image size (SFR)
 ## v0.0.4 [17/03/28]
 - 17/03/29 refact(all): refactor branch from master evolution (SFR)
 - 16/11/29 chore(all): update log formatter, cli dependencies and editorconfig (SFR)
