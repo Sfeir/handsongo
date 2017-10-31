@@ -1,13 +1,16 @@
 package utils
 
 import (
-	"github.com/Sirupsen/logrus"
 	"github.com/bshuster-repo/logrus-logstash-hook"
+	"github.com/sirupsen/logrus"
 	"os"
 	"time"
 )
 
 const (
+	// AppName is the application's name
+	AppName = "handsongo"
+
 	// LogStashFormatter is constant used to format logs as logstash format
 	LogStashFormatter = "logstash"
 	// TextFormatter is constant used to format logs as simple text format
@@ -19,9 +22,11 @@ func InitLog(logLevel, formatter string) error {
 
 	switch formatter {
 	case LogStashFormatter:
-		logrus.SetFormatter(&logrus_logstash.LogstashFormatter{
+		logrus.SetFormatter(&logrustash.LogstashFormatter{
 			TimestampFormat: time.RFC3339,
+			Type:            AppName,
 		})
+
 	default:
 		logrus.SetFormatter(&logrus.TextFormatter{
 			ForceColors:   true,

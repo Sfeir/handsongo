@@ -1,8 +1,8 @@
 package web
 
 import (
-	logger "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
+	logger "github.com/sirupsen/logrus"
 	"net/http"
 )
 

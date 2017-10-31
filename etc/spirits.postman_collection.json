@@ -1,0 +1,122 @@
+{
+	"info": {
+		"name": "Sfeir",
+		"_postman_id": "bf0a05f6-7c3b-2ea8-8a73-9732610250a7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "handsongo",
+			"description": "",
+			"item": [
+				{
+					"name": "GET spirits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8020/v1/spirits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"v1",
+								"spirits"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST spirits",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Caroni\",\n  \"distiller\": \"Caroni\",\n  \"bottler\": \"Velier\",\n  \"country\": \"Trinidad\",\n  \"region\": \"\",\n  \"composition\": \"Molasse\",\n  \"type\": 0,\n  \"age\": 15,\n  \"bottlingDate\": \"2015-01-01T00:00:00Z\",\n  \"score\": 8.5,\n  \"comment\": \"heavy tire taste\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8020/v1/spirits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"v1",
+								"spirits"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE spirit",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8020/v1/spirits/59f8540183d407825ae48dc5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"v1",
+								"spirits",
+								"59f8540183d407825ae48dc5"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT spirits",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Clairin\",\n  \"distiller\": \"Vaval\",\n  \"bottler\": \"Velier\",\n  \"country\": \"Haïti\",\n  \"region\": \"\",\n  \"composition\": \"Cane juice\",\n  \"type\": 0,\n  \"age\": 5,\n  \"bottlingDate\": \"2015-01-01T00:00:00Z\",\n  \"score\": 8.0,\n  \"comment\": \"fruity\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8020/v1/spirits/59f8546c83d407825ae48dd4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"v1",
+								"spirits",
+								"59f8546c83d407825ae48dd4"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

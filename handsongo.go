@@ -6,7 +6,7 @@ import (
 	"github.com/Sfeir/handsongo/dao"
 	"github.com/Sfeir/handsongo/utils"
 	"github.com/Sfeir/handsongo/web"
-	logger "github.com/Sirupsen/logrus"
+	logger "github.com/sirupsen/logrus"
 	cli "gopkg.in/urfave/cli.v1"
 	"os"
 	"strconv"
@@ -28,16 +28,12 @@ var (
 	statisticsDuration = 20 * time.Second
 
 	header, _ = base64.StdEncoding.DecodeString(
-		"DQouLCwsLC4uLi4gIC4gIC4uICAgTk1NTU0sLi4gLi4uLi4gICAgLi4uTU0sLiAuICAgICAgLi4sLCwsLi4NCjo3JCRPOi4gLi4uLi4uICAuIDdNSSAg" +
-			"Li4gICAgIC4gICAgLiAgICArSSAuICAgICAgLi4uLk9aJCQuLg0KOiQkIC4gICAgKzhORDc6Ljo9OE1JPT06IDp+fn5+fn5+fiwuLj09PT09Li4uPTouOiR" +
-			"aPy4gLiA6JC4gDQo6JCQgICAuPU04TU1NRC4uPU1OTk5NTT0gSSQkJCQkJCQkOiAsTU5NOE0uLiBNKz1ETU1EOiAuLjokLiANCjokJCAgLi5NTS4uLi4uIC" +
-			"AgIDhNfi4gLi4uIC4gICAgIC4uLiAuICBNTS4uLk1NRCAuLiAuICAgOiQuIA0KOiQkIC4gIDdNRE1afiAgIC4gOE1+LiAgLjo6Ojo6Ojo6Oi4uIC4gIE1NL" +
-			"i4gTSsgLiAgICAgICA6JC4uDQo6JCQgICAgLi4kTU04TTcgLiA4TX4uICAgPyQkJCQkJCQ3OiAuLiAgTU0uLiBNKyAgICAgICAgIDo3LiANCjokJCAgIC4u" +
-			"IC4uLi5NOD0uIDhNfi4gICAuLi4gICAgIC4gLi4uICBNTS4uIE0rIC4gICAgICAgOiQuLg0KOiQkICAuLj06ICAuLE04Oi4gOE1+LiAgLiwsLCwsLCwsLC4" +
-			"uLi4gIE1NLi4uTT8gLiAgIC4gLi46JC4gDQo6JCQgLiAuTThNTU1ETVouLiA4TX4uICAuPyQ3Nzc3Nzc3Oi4uLi4gTU0uLiBNKyAgICAgLi4uIDokLiANCj" +
-			"okJC4gLi4uLi4uLi4uLiAgICAuICAgIC4uLi4gICAgICAuLi4uLi4gIC4gICAgLiAgICAuLi4uOiQuIA0KOlpaJE86Li4uICAgICAgICAgICAgICAgICAgI" +
-			"CAgICAgICAgICAgICAgICAgICAgICAgIC4uT1paWi4uDQouLi4uLi4uLi4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLi4u" +
-			"LiAuIA0K")
+		"ICAgICAgICAgLF8tLS1+fn5+fi0tLS0uXyAgICAgICAgIAogIF8sLF8sKl5fX19fICAgICAgX19fX19gYCpnKlwiKi" +
+			"wgCiAvIF9fLyAvJyAgICAgXi4gIC8gICAgICBcIF5AcSAgIGYgClsgIEBmIHwgQCkpICAgIHwgIHwgQCkpICAgbCA" +
+			"gMCBfLyAgCiBcYC8gICBcfl9fX18gLyBfXyBcX19fX18vICAgIFwgICAKICB8ICAgICAgICAgICBfbF9fbF8gICAg" +
+			"ICAgICAgIEkgICAKICB9ICAgICAgICAgIFtfX19fX19dICAgICAgICAgICBJICAKICBdICAgICAgICAgICAgfCB8I" +
+			"HwgICAgICAgICAgICB8ICAKICBdICAgICAgICAgICAgIH4gfiAgICAgICAgICAgICB8ICAKICB8ICAgICAgICAgIC" +
+			"AgICAgICAgICAgICAgICAgIHwgICAKICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwg")
 )
 
 func main() {
@@ -61,29 +57,34 @@ func main() {
 	// command line flags
 	app.Flags = []cli.Flag{
 		cli.IntFlag{
-			Value: port,
-			Name:  "port",
-			Usage: "Set the listening port of the webserver",
+			Value:       port,
+			Name:        "port",
+			Usage:       "Set the listening port of the webserver",
+			Destination: &port,
 		},
 		cli.StringFlag{
-			Value: db,
-			Name:  "db",
-			Usage: "Set the mongo database connection string",
+			Value:       db,
+			Name:        "db",
+			Usage:       "Set the mongo database connection string",
+			Destination: &db,
 		},
 		cli.StringFlag{
-			Value: logLevel,
-			Name:  "logl",
-			Usage: "Set the output log level (debug, info, warning, error)",
+			Value:       logLevel,
+			Name:        "logl",
+			Usage:       "Set the output log level (debug, info, warning, error)",
+			Destination: &logLevel,
 		},
 		cli.StringFlag{
-			Value: logFormat,
-			Name:  "logf",
-			Usage: "Set the log formatter (logstash or text)",
+			Value:       logFormat,
+			Name:        "logf",
+			Usage:       "Set the log formatter (logstash or text)",
+			Destination: &logFormat,
 		},
 		cli.DurationFlag{
-			Value: statisticsDuration,
-			Name:  "statd",
-			Usage: "Set the statistics duration (ex : 1h, 2h30m, 30s, 300ms)",
+			Value:       statisticsDuration,
+			Name:        "statd",
+			Usage:       "Set the statistics duration (ex : 1h, 2h30m, 30s, 300ms)",
+			Destination: &statisticsDuration,
 		},
 	}
 
@@ -92,13 +93,6 @@ func main() {
 	app.Action = func(c *cli.Context) error {
 		// print header
 		fmt.Println(string(header))
-
-		// parse parameters
-		port = c.Int("port")
-		db = c.String("db")
-		logLevel = c.String("logl")
-		logFormat = c.String("logf")
-		statisticsDuration = c.Duration("statd")
 
 		fmt.Print("* --------------------------------------------------- *\n")
 		fmt.Printf("|   port                    : %d\n", port)
