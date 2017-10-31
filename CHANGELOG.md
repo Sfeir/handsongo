@@ -1,7 +1,10 @@
 # Changelog
 
-## v0.0.5 [unreleased]
--17/05/07 chore(docker): add support for multi stage docker build to reduce image size (SFR)
+## v0.0.5 [17/10/31]
+- 17/10/31 chore(all): update to golang 1.9, mongo 3.4 and dep (SFR)
+           refact(make): refactor the makefile for automatic help message
+           test(web): add postman collection for testing
+- 17/05/07 chore(docker): add support for multi stage docker build to reduce image size (SFR)
 ## v0.0.4 [17/03/28]
 - 17/03/28 refact(dao): add typed spirit types and interface compile time check (SFR)
            refact(model): add typed spirit types
