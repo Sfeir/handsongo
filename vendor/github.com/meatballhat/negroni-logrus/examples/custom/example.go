@@ -6,7 +6,7 @@ import (
 
 	"flag"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 
 	"github.com/urfave/negroni"
 	"github.com/meatballhat/negroni-logrus"

@@ -3,7 +3,7 @@ package dao
 import (
 	"errors"
 	"github.com/Sfeir/handsongo/model"
-	logger "github.com/Sirupsen/logrus"
+	logger "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

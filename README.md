@@ -4,6 +4,9 @@
 This project is meant to help learning go. It provides a basic implementation of a REST microservice exposing a CRUD API.
 Data are persisted in a MongoDB NoSQL database and the application is deployed in Docker.
 
+## Presentation
+The slides from Devoxx2017 to get the handson done are available [here](https://t.co/T9ro0CagyY).
+
 ## Technical stack
 
 * [Docker](https://www.docker.com)
@@ -13,7 +16,7 @@ Data are persisted in a MongoDB NoSQL database and the application is deployed i
 * [Gorilla Mux the request context manager](https://github.com/gorilla/context)
 * [Urfave negroni Web HTTP middleware](https://github.com/urfave/negroni)
 * [Urfave cli the command line client parser](https://gopkg.in/urfave/cli.v1)
-* [Sirupsen the logger](https://github.com/Sirupsen/logrus)
+* [Sirupsen the logger](https://github.com/sirupsen/logrus)
 * [The database driver](https://gopkg.in/mgo.v2)
 * [Glide the dependency manager](https://glide.sh)
 * [Golint the source linter](https://github.com/golang/lint)

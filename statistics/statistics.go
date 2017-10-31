@@ -1,7 +1,7 @@
 package statistics
 
 import (
-	logger "github.com/Sirupsen/logrus"
+	logger "github.com/sirupsen/logrus"
 	"time"
 )
 

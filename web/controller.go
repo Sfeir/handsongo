@@ -3,13 +3,13 @@ package web
 import (
 	"github.com/Sfeir/handsongo/dao"
 	"github.com/Sfeir/handsongo/model"
-	logger "github.com/Sirupsen/logrus"
+	logger "github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 )
 
 const (
-	prefix = "/spirits"
+	prefix = "/v1/spirits"
 )
 
 // SpiritController is a handler of spirits

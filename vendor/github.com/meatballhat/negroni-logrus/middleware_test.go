@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
 	"github.com/stretchr/testify/assert"
 )
@@ -208,11 +208,14 @@ func TestServeHTTPWithURLExcluded(t *testing.T) {
 		t.Fatalf("Can't exclude URL %q: %q", "req.URL.Path", err)
 	}
 
+	nextHandlerCalled := false
 	mw.ServeHTTP(rec, req, func(w http.ResponseWriter, r *http.Request) {
+		nextHandlerCalled = true
 		w.WriteHeader(418)
 	})
 	lines := strings.Split(strings.TrimSpace(mw.Logger.Out.(*bytes.Buffer).String()), "\n")
 	assert.Equal(t, []string{""}, lines)
+	assert.True(t, nextHandlerCalled, "The next http.HandlerFunc was not called!")
 }
 
 func TestRealClock_Now(t *testing.T) {
