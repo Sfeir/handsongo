@@ -1,4 +1,4 @@
-#HANDSONGO
+# HANDSONGO
 [![Build Status](https://travis-ci.org/Sfeir/handsongo.svg?branch=master)](https://travis-ci.org/Sfeir/handsongo)
 [![GoDoc](https://godoc.org/github.com/sebastienfr/handsongo?status.svg)](https://godoc.org/github.com/Sfeir/handsongo)
 [![codebeat badge](https://codebeat.co/badges/e8b35982-ddbf-41e7-a975-ff79f3c69502)](https://codebeat.co/projects/github-com-sfeir-handsongo)
