@@ -12,8 +12,8 @@ You must have `git` and `docker` installed on your machine.
 * Pull needed docker images
 
 ```
-docker pull golang:1.7.3-alpine
-docker pull mongo:3.3
+docker pull golang:1.9-alpine
+docker pull mongo:3.4
 ```
 
 ### Workspace installation
@@ -32,16 +32,21 @@ docker pull mongo:3.3
 * Download go tools for Visual Studio Code,
 
 ```
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef
-go get -u -v github.com/golang/lint/golint
-go get -u -v github.com/lukehoban/go-outline
-go get -u -v sourcegraph.com/sqs/goreturns
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v github.com/tpng/gopkgs
-go get -u -v github.com/newhook/go-symbols
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v github.com/cweill/gotests/...
+go get -u -v \
+    github.com/ramya-rao-a/go-outline \
+    github.com/acroca/go-symbols \
+    github.com/nsf/gocode \
+    github.com/rogpeppe/godef \
+    golang.org/x/tools/cmd/godoc \
+    github.com/zmb3/gogetdoc \
+    github.com/golang/lint/golint \
+    github.com/fatih/gomodifytags \
+    github.com/uudashr/gopkgs/cmd/gopkgs \
+    golang.org/x/tools/cmd/gorename \
+    sourcegraph.com/sqs/goreturns \
+    github.com/cweill/gotests/... \
+    golang.org/x/tools/cmd/guru \
+    github.com/josharian/impl
 ```
 
 * Download the git repository of hand's on go and checkout the `start` branch.
@@ -61,16 +66,21 @@ mkdir -p workspace/pkg
 
 export GOPATH=$(pwd)/workspace
 
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef
-go get -u -v github.com/golang/lint/golint
-go get -u -v github.com/lukehoban/go-outline
-go get -u -v sourcegraph.com/sqs/goreturns
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v github.com/tpng/gopkgs
-go get -u -v github.com/newhook/go-symbols
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v github.com/cweill/gotests/...
+go get -u -v \
+    github.com/ramya-rao-a/go-outline \
+    github.com/acroca/go-symbols \
+    github.com/nsf/gocode \
+    github.com/rogpeppe/godef \
+    golang.org/x/tools/cmd/godoc \
+    github.com/zmb3/gogetdoc \
+    github.com/golang/lint/golint \
+    github.com/fatih/gomodifytags \
+    github.com/uudashr/gopkgs/cmd/gopkgs \
+    golang.org/x/tools/cmd/gorename \
+    sourcegraph.com/sqs/goreturns \
+    github.com/cweill/gotests/... \
+    golang.org/x/tools/cmd/guru \
+    github.com/josharian/impl
 
 git clone -b start git@github.com:Sfeir/handsongo.git workspace/src/github.com/Sfeir/handsongo
 ```
