@@ -38,9 +38,6 @@ var (
 
 func main() {
 
-	// set timezone as UTC for bson/json time marshalling
-	time.Local = time.UTC
-
 	// new app
 	app := cli.NewApp()
 	app.Name = "handsongo"

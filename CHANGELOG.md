@@ -1,6 +1,7 @@
 # Changelog
 
 ## v0.0.5 [17/10/31]
+- 17/11/03 fix(model): fix wrong model comparison, add Equal method with specific date comparision 
 - 17/10/31 chore(all): update to golang 1.9, mongo 3.4 and dep (SFR)
            refact(make): refactor the makefile for automatic help message
            test(web): add postman collection for testing
