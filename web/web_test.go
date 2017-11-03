@@ -17,7 +17,7 @@ func TestSpiritHandlerGet(t *testing.T) {
 	controller := NewSpiritController(daoMock)
 
 	// build a request
-	req, err := http.NewRequest(http.MethodGet, "localhost/spirits", nil)
+	req, err := http.NewRequest(http.MethodGet, "localhost/v1/spirits", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -55,7 +55,7 @@ func TestSpiritHandlerGetServer(t *testing.T) {
 	ts := httptest.NewServer(srv)
 	defer ts.Close()
 
-	res, err := http.Get(ts.URL + "/spirits")
+	res, err := http.Get(ts.URL + "/v1/spirits")
 
 	if err != nil {
 		t.Error(err)
@@ -74,8 +74,12 @@ func TestSpiritHandlerGetServer(t *testing.T) {
 		t.Error("Wrong response code")
 	}
 
+	if len(resSpirit) < 1 {
+		t.Fatal("Wrong response body size")
+	}
+
 	if resSpirit[0] != dao.MockedSpirit {
-		t.Error("Wrong response body")
+		t.Error("Wrong response body content")
 	}
 }
 
@@ -89,7 +93,7 @@ func BenchmarkSpiritHandlerGet(t *testing.B) {
 	controller := NewSpiritController(daoMock)
 
 	// build a request
-	req, err := http.NewRequest("GET", "localhost/spirits", nil)
+	req, err := http.NewRequest("GET", "localhost/v1/spirits", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
