@@ -67,34 +67,34 @@ param() {
 # create
 create() {
   vecho "Create spirit from file..."
-  curl -s -X POST -H "Content-Type:application/json" -d @caroni.json ${IP}:8020/spirits | jq
+  curl -s -X POST -H "Content-Type:application/json" -d @caroni.json ${IP}:8020/v1/spirits | jq
 }
 
 # query
 query() {
   vecho "Query all spirits..."
-  curl -s ${IP}:8020/spirits | jq
+  curl -s ${IP}:8020/v1/spirits | jq
 
   vecho "Retrieve first spirit by ID..."
-  ID=$(curl -s ${IP}:8020/spirits | jq '.[0]' | jq -r '.id')
+  ID=$(curl -s ${IP}:8020/v1/spirits | jq '.[0]' | jq -r '.id')
 
   vecho "Query one spirit by found ID ${ID}"
-  curl -s ${IP}:8020/spirits/${ID} | jq
+  curl -s ${IP}:8020/v1/spirits/${ID} | jq
 }
 
 # update
 update() {
   vecho "Update spirit ${ID} from file..."
-  curl -s -X PUT -H "Content-Type:application/json" -d @clairin.json ${IP}:8020/spirits/${ID} | jq
+  curl -s -X PUT -H "Content-Type:application/json" -d @clairin.json ${IP}:8020/v1/spirits/${ID} | jq
 
   vecho "Query one spirit by found ID ${ID} after update"
-  curl -s ${IP}:8020/spirits/${ID} | jq
+  curl -s ${IP}:8020/v1/spirits/${ID} | jq
 }
 
 # delete
 delete() {
   vecho "Deleting spirit by ID ${ID}"
-  curl -X DELETE -H "Content-Type:application/json" ${IP}:8020/spirits/${ID}
+  curl -X DELETE -H "Content-Type:application/json" ${IP}:8020/v1/spirits/${ID}
 }
 
 ###########################
