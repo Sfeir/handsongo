@@ -41,3 +41,22 @@ type Spirit struct {
 func (s *Spirit) GetID() string {
 	return s.ID.Hex()
 }
+
+// Equal returns true if both spirit are equal, false otherwise
+func (s *Spirit) Equal(cmp Spirit) bool {
+	equal :=
+		s.ID == cmp.ID &&
+			s.Name == cmp.Name &&
+			s.Distiller == cmp.Distiller &&
+			s.Bottler == cmp.Bottler &&
+			s.Country == cmp.Country &&
+			s.Region == cmp.Region &&
+			s.Composition == cmp.Composition &&
+			s.SpiritType == cmp.SpiritType &&
+			s.Age == cmp.Age &&
+			s.BottlingDate.Equal(cmp.BottlingDate) &&
+			s.Score == cmp.Score &&
+			s.Comment == cmp.Comment
+
+	return equal
+}

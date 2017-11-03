@@ -39,7 +39,11 @@ func TestSpiritHandlerGet(t *testing.T) {
 		t.Error("Wrong response code")
 	}
 
-	if dao.MockedSpirit != spiritOut[0] {
+	if len(spiritOut) < 1 {
+		t.Fatal("Wrong response body size")
+	}
+
+	if !dao.MockedSpirit.Equal(spiritOut[0]) {
 		t.Errorf("Expected different from %v output %v", dao.MockedSpirit, spiritOut[0])
 	}
 }
@@ -78,7 +82,7 @@ func TestSpiritHandlerGetServer(t *testing.T) {
 		t.Fatal("Wrong response body size")
 	}
 
-	if resSpirit[0] != dao.MockedSpirit {
+	if !dao.MockedSpirit.Equal(resSpirit[0]) {
 		t.Error("Wrong response body content")
 	}
 }
@@ -111,7 +115,7 @@ func BenchmarkSpiritHandlerGet(t *testing.B) {
 		t.Errorf("Unable to get JSON content %v", err)
 	}
 
-	if dao.MockedSpirit != spiritOut[0] {
+	if !dao.MockedSpirit.Equal(spiritOut[0]) {
 		t.Errorf("Expected different from %v output %v", dao.MockedSpirit, spiritOut)
 	}
 }
