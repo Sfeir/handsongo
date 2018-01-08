@@ -13,12 +13,11 @@ The slides from Devoxx2017 to get the handson done are available [here](https://
 * [MongoDB NoSQL database](https://www.mongodb.com)
 * [Go is the language](https://golang.org)
 * [Gorilla Mux the URL router](https://github.com/gorilla/mux)
-* [Gorilla Mux the request context manager](https://github.com/gorilla/context)
 * [Urfave negroni Web HTTP middleware](https://github.com/urfave/negroni)
 * [Urfave cli the command line client parser](https://gopkg.in/urfave/cli.v1)
 * [Sirupsen the logger](https://github.com/sirupsen/logrus)
-* [The database driver](https://gopkg.in/mgo.v2)
-* [Glide the dependency manager](https://glide.sh)
+* [The MongoDB database driver](https://gopkg.in/mgo.v2)
+* [Dep the dependency manager](https://github.com/golang/dep)
 * [Golint the source linter](https://github.com/golang/lint)
 
 ## Architecture
