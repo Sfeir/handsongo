@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"errors"
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -45,7 +44,7 @@ func NewSpiritDAOMongo(session *mgo.Session) SpiritDAO {
 func (s *SpiritDAOMongo) GetSpiritByID(ID string) (*model.Spirit, error) {
 	// check ID
 	if !bson.IsObjectIdHex(ID) {
-		return nil, errors.New("Invalid input to ObjectIdHex")
+		return nil, ErrInvalidObjectID
 	}
 
 	session := s.session.Copy()
@@ -64,13 +63,13 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	c := session.DB("").C(collection)
 
 	// check param
-	hasPaging := start > NoPaging && end > NoPaging && end > start
+	hasPaging := start > NoPaging && end > NoPaging && end >= start
 
 	// perform request
 	var err error
-	spirits := []model.Spirit{}
+	var spirits []model.Spirit
 	if hasPaging {
-		err = c.Find(query).Skip(start).Limit(end - start).All(&spirits)
+		err = c.Find(query).Skip(start).Limit(end - start + 1).All(&spirits)
 	} else {
 		err = c.Find(query).All(&spirits)
 	}
@@ -111,7 +110,7 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 	// check ID
 	if !bson.IsObjectIdHex(ID) {
-		return false, errors.New("Invalid input to ObjectIdHex")
+		return false, ErrInvalidObjectID
 	}
 
 	session := s.session.Copy()
@@ -129,7 +128,7 @@ func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
 
 	// check ID
 	if !bson.IsObjectIdHex(ID) {
-		return errors.New("Invalid input to ObjectIdHex")
+		return ErrInvalidObjectID
 	}
 
 	session := s.session.Copy()

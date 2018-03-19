@@ -28,7 +28,7 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 	}
 
 	// build routes
-	routes := []Route{}
+	var routes []Route
 	// GetAll
 	routes = append(routes, Route{
 		Name:        "Get all spirits",
@@ -71,10 +71,10 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 }
 
 // GetAll retrieve all entities with optional paging of items (start / end are item counts 50 to 100 for example)
-func (sh *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
+func (sc *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 
-	startStr := ParamAsString("start", r)
-	endStr := ParamAsString("end", r)
+	startStr := QueryParamAsString("start", r)
+	endStr := QueryParamAsString("end", r)
 
 	start := dao.NoPaging
 	end := dao.NoPaging
@@ -91,7 +91,7 @@ func (sh *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// find all spirits
-	spirits, err := sh.spiritDao.GetAllSpirits(start, end)
+	spirits, err := sc.spiritDao.GetAllSpirits(start, end)
 	if err != nil {
 		logger.WithField("error", err).Warn("unable to retrieve spirits")
 		SendJSONError(w, "Error while retrieving spirits", http.StatusInternalServerError)
@@ -103,12 +103,12 @@ func (sh *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 // Get retrieve an entity by id
-func (sh *SpiritController) Get(w http.ResponseWriter, r *http.Request) {
+func (sc *SpiritController) Get(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 
 	// find spirit
-	spirit, err := sh.spiritDao.GetSpiritByID(spiritID)
+	spirit, err := sc.spiritDao.GetSpiritByID(spiritID)
 	if err != nil {
 		if err == mgo.ErrNotFound {
 			logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to retrieve spirit by ID")
@@ -126,7 +126,7 @@ func (sh *SpiritController) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create create an entity
-func (sh *SpiritController) Create(w http.ResponseWriter, r *http.Request) {
+func (sc *SpiritController) Create(w http.ResponseWriter, r *http.Request) {
 	// spirit to be created
 	spirit := &model.Spirit{}
 	// get the content body
@@ -139,7 +139,7 @@ func (sh *SpiritController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// save spirit
-	err = sh.spiritDao.SaveSpirit(spirit)
+	err = sc.spiritDao.SaveSpirit(spirit)
 	if err != nil {
 		logger.WithField("error", err).WithField("spirit", *spirit).Warn("unable to create spirit")
 		SendJSONError(w, "Error while creating spirit", http.StatusInternalServerError)
@@ -151,7 +151,7 @@ func (sh *SpiritController) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 // Update update an entity by id
-func (sh *SpiritController) Update(w http.ResponseWriter, r *http.Request) {
+func (sc *SpiritController) Update(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 
@@ -167,7 +167,7 @@ func (sh *SpiritController) Update(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// save spirit
-	_, err = sh.spiritDao.UpsertSpirit(spiritID, spirit)
+	_, err = sc.spiritDao.UpsertSpirit(spiritID, spirit)
 	if err != nil {
 		logger.WithField("error", err).WithField("spirit", *spirit).Warn("unable to create spirit")
 		SendJSONError(w, "Error while creating spirit", http.StatusInternalServerError)
@@ -179,12 +179,12 @@ func (sh *SpiritController) Update(w http.ResponseWriter, r *http.Request) {
 }
 
 // Delete delete an entity by id
-func (sh *SpiritController) Delete(w http.ResponseWriter, r *http.Request) {
+func (sc *SpiritController) Delete(w http.ResponseWriter, r *http.Request) {
 	// get the spirit ID from the URL
 	spiritID := ParamAsString("id", r)
 
 	// find spirit
-	err := sh.spiritDao.DeleteSpirit(spiritID)
+	err := sc.spiritDao.DeleteSpirit(spiritID)
 	if err != nil {
 		logger.WithField("error", err).WithField("spirit ID", spiritID).Warn("unable to delete spirit by ID")
 		SendJSONError(w, "Error while deleting spirit by ID", http.StatusInternalServerError)

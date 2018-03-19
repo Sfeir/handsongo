@@ -3,6 +3,7 @@ package web
 import (
 	"github.com/Sfeir/handsongo/dao"
 	"github.com/meatballhat/negroni-logrus"
+	"github.com/rs/cors"
 	logger "github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
 	"time"
@@ -31,6 +32,9 @@ func BuildWebServer(db string, daoType dao.DBType, statisticsDuration time.Durat
 
 	// add statistics middleware
 	n.Use(NewStatisticsMiddleware(statisticsDuration))
+
+	// add CORS (all origins, all methods)
+	n.Use(cors.AllowAll())
 
 	// add as many middleware as you like
 
