@@ -7,9 +7,27 @@
 #        ENV VARIABLE
 #
 # -----------------------------------------------------------------
+# check os for path params
+ifeq ($(OS),Windows_NT)
+	PATHSEP=;
+	FOLDERSEP=\\
+	EXTENSION=.exe
+	# case gopath is empty used the default one
+	ifeq ($(GOPATH),)
+		GOPATH=$(USERPROFILE)\go
+  endif
+else
+	PATHSEP=:
+	FOLDERSEP=/
+	EXTENSION=""
+	# case gopath is empty used the default one
+	ifeq ($(GOPATH),)
+		GOPATH=$(HOME)/go
+	endif
+endif
 
-# go env vars
-GO=$(firstword $(subst :, ,$(GOPATH)))
+GO=$(firstword $(subst $(PATHSEP), ,$(GOPATH)))
+
 # list of pkgs for the project without vendor
 PKGS=$(shell go list ./... | grep -v /vendor/)
 DOCKER_IP=$(shell if [ -z "$(DOCKER_MACHINE_NAME)" ]; then echo 'localhost'; else docker-machine ip $(DOCKER_MACHINE_NAME); fi)
@@ -37,7 +55,7 @@ clean: ## Clean the project
 	@rm -Rf .tmp .DS_Store *.log *.out *.mem *.test build/
 
 build: format ## Build all libraries and binaries
-	@go build -v $(VERSION_FLAG) -o $(GO)/bin/handsongo handsongo.go
+	@go build -v $(VERSION_FLAG) -o "$(GO)$(FOLDERSEP)bin$(FOLDERSEP)handsongo$(EXTENSION)" handsongo.go
 
 format: ## Format all packages
 	@go fmt $(PKGS)

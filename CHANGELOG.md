@@ -1,10 +1,15 @@
 # Changelog
 
 ## v0.0.6 [UNRELEASED]
-- 18/02/19 chore(build): chore(build): update build to golang v1.10
+- 18/03/19 fix(dao): fix pagination computing
+           refact(dao): factorize ObjectID error
+           chore(make): make Makefile Windows compatible
+           fix(web): fix wrong pagination fragment parameters
+           feat(web): add CORS middleware to web server
+- 18/02/19 chore(build): update build to golang v1.10
 
 ## v0.0.5 [17/10/31]
-- 17/11/03 fix(model): fix wrong model comparison, add Equal method with specific date comparision 
+- 17/11/03 fix(model): fix wrong model comparison, add Equal method with specific date comparision
 - 17/10/31 chore(all): update to golang 1.9, mongo 3.4 and dep (SFR)
            refact(make): refactor the makefile for automatic help message
            test(web): add postman collection for testing

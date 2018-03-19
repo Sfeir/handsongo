@@ -60,6 +60,11 @@ func ParamAsString(name string, r *http.Request) string {
 	return value
 }
 
+// QueryParamAsString Param Return a url param as an int
+func QueryParamAsString(name string, r *http.Request) string {
+	return r.URL.Query().Get(name)
+}
+
 // GetJSONContent returns the JSON content of a request
 func GetJSONContent(v interface{}, r *http.Request) error {
 	defer r.Body.Close()

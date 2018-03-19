@@ -1,12 +1,18 @@
 package dao
 
 import (
+	"errors"
 	"github.com/Sfeir/handsongo/model"
 )
 
 const (
 	// NoPaging used with skip, limit parameters
 	NoPaging = -1
+)
+
+var (
+	// ErrInvalidObjectID is used on invalid ObjectId
+	ErrInvalidObjectID = errors.New("invalid input to ObjectIdHex")
 )
 
 // SpiritDAO is the DAO interface to work with spirits

@@ -45,7 +45,7 @@ func NewSpiritDAOMongo(session *mgo.Session) SpiritDAO {
 func (s *SpiritDAOMongo) GetSpiritByID(ID string) (*model.Spirit, error) {
 
 	// TODO use the bson library to check if the ID is a well formed ObjectId
-	// if not return a new error "Invalid input to ObjectIdHex"
+	// if not return a new ErrInvalidObjectID error
 	// check ID
 
 	// copying the session and defering the close
@@ -71,11 +71,11 @@ func (s *SpiritDAOMongo) getAllSpiritsByQuery(query interface{}, start, end int)
 	// TODO retrieve the collection
 
 	// check param
-	hasPaging := start > NoPaging && end > NoPaging && end > start
+	hasPaging := start > NoPaging && end > NoPaging && end >= start
 
 	// perform request
 	var err error
-	spirits := []model.Spirit{}
+	var spirits []model.Spirit
 	if hasPaging {
 		// TODO find with skip and limit all spirits
 	} else {
@@ -119,7 +119,7 @@ func (s *SpiritDAOMongo) UpsertSpirit(ID string, spirit *model.Spirit) (bool, er
 
 	// check ID
 	if !bson.IsObjectIdHex(ID) {
-		return false, errors.New("Invalid input to ObjectIdHex")
+		return false, ErrInvalidObjectID
 	}
 
 	session := s.session.Copy()
@@ -137,7 +137,7 @@ func (s *SpiritDAOMongo) DeleteSpirit(ID string) error {
 
 	// check ID
 	if !bson.IsObjectIdHex(ID) {
-		return errors.New("Invalid input to ObjectIdHex")
+		return ErrInvalidObjectID
 	}
 
 	session := s.session.Copy()

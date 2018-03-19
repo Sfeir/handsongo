@@ -27,7 +27,7 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 	}
 
 	// build routes
-	routes := []Route{}
+	var routes []Route
 	// GetAll
 	routes = append(routes, Route{
 		Name:        "Get all spirits",
@@ -63,8 +63,8 @@ func NewSpiritController(spiritDAO dao.SpiritDAO) *SpiritController {
 // GetAll retrieve all entities with optional paging of items (start / end are item counts 50 to 100 for example)
 func (sc *SpiritController) GetAll(w http.ResponseWriter, r *http.Request) {
 
-	startStr := ParamAsString("start", r)
-	endStr := ParamAsString("end", r)
+	startStr := QueryParamAsString("start", r)
+	endStr := QueryParamAsString("end", r)
 
 	start := dao.NoPaging
 	end := dao.NoPaging
