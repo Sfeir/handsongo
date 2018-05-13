@@ -1,6 +1,7 @@
 # Changelog
 
-## v0.0.6 [UNRELEASED]
+## v0.0.6 [18/05/13]
+- 18/05/13 chore(docker): update compose file to format 2.0
 - 18/03/19 fix(dao): fix pagination computing
            refact(dao): factorize ObjectID error
            chore(make): make Makefile Windows compatible

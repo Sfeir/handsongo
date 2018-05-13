@@ -1,18 +1,25 @@
-# handsongo micro-service
-handsongo:
- container_name: handsongo
- image: sfeir/handsongo:latest
- restart: always
- links:
-   - mongo
- ports:
-  - "8020:8020"
- command: /app/handsongo -port 8020 -logl debug -logf text -statd 15s -db mongodb://mongo/spirits
+version: '2'
 
-# bdd mockup
-mongo:
- container_name: handsongo-mongo
- image: mongo:3.4
- restart: always
- ports:
-  - "27017:27017"
+services:
+  # handsongo micro-service
+  handsongo:
+   container_name: handsongo
+   image: sfeir/handsongo:latest
+   restart: always
+   external_links:
+     - mongo:mongo
+   ports:
+    - "8020:8020"
+   command: -port 8020
+            -logl debug
+            -logf text
+            -statd 15s
+            -db mongodb://mongo/spirits
+
+  # mongodb db
+  mongo:
+   container_name: handsongo-mongo
+   image: mongo:3.4
+   restart: always
+   ports:
+    - "27017:27017"
