@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"errors"
 	"github.com/Sfeir/handsongo/model"
 	logger "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
