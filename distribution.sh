@@ -68,7 +68,7 @@ printf "\e[1;32m%s\e[0m\n" "DONE"
 
 
 printf "%-20s | %-40s" "$SCRIPT_SCOPE" "prepare vscode golang plugin (${VSCODE_GOLANG_PLUGIN_VERSION})"
-wget -q --output-document="$(pwd)/dist/${OS_DIST_NAME}/apps/go.vsix" "https://lukehoban.gallery.vsassets.io/_apis/public/gallery/publisher/lukehoban/extension/Go/${VSCODE_GOLANG_PLUGIN_VERSION}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
+wget -q --output-document="$(pwd)/dist/${OS_DIST_NAME}/apps/go.vsix" "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/Go/${VSCODE_GOLANG_PLUGIN_VERSION}/vspackage"
 printf "\e[1;32m%s\e[0m\n" "DONE"
 
 
